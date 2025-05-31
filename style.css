@@ -1,0 +1,97 @@
+/* الخطوط الأساسية والتنسيق العام */
+body {
+    font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* خط عربي عصري مع بدائل */
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* لون خلفية عام احتياطي */
+    color: #333;
+    line-height: 1.6;
+    /* يمكنك إضافة صورة خلفية قانونية هنا */
+    /* مثال: background-image: url('path/to/your/legal-background.jpg'); */
+    /* background-size: cover; */
+    /* background-attachment: fixed; */
+    /* background-blend-mode: overlay; */ /* لمزج الخلفية مع لون */
+    /* background-color: rgba(0, 20, 40, 0.7); */ /* لون أزرق داكن شفاف فوق الخلفية */
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto; /* لتوسيط المحتوى */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* خلفية بيضاء شبه شفافة للمحتوى إذا كان هناك صورة خلفية للجسم */
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 8px; /* زوايا دائرية بسيطة */
+}
+
+.site-header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #004080; /* خط فاصل بلون أزرق قانوني داكن */
+    margin-bottom: 30px;
+}
+
+.site-header h1 {
+    color: #003366; /* لون أزرق داكن للعناوين الرئيسية */
+    font-size: 2.5em;
+    margin-bottom: 0.2em;
+}
+
+.site-header p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* تنسيق أزرار الفرق الدراسية */
+.year-navigation {
+    display: flex; /* لترتيب الأزرار أفقياً */
+    justify-content: center; /* لتوسيط الأزرار */
+    flex-wrap: wrap; /* للسماح للأزرار بالانتقال لسطر جديد على الشاشات الصغيرة */
+    gap: 20px; /* المسافة بين الأزرار */
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+
+.year-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #00509e; /* لون أزرق متوسط - يمكنك تغييره */
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 25px; /* زوايا دائرية لجعلها "حبوب" */
+    border: 2px solid transparent;
+    transition: all 0.3s ease; /* تأثير انتقال سلس للتغييرات */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* تأثيرات بصرية عند مرور الماوس (hover) على الأزرار */
+.year-button:hover, .year-button:focus {
+    background-color: #003366; /* لون أغمق عند المرور */
+    color: #fff;
+    border-color: #c4a747; /* لون ذهبي أو برونزي لحدود الزر عند المرور - مستوحى من الأختام القانونية */
+    transform: translateY(-3px); /* حركة بسيطة للأعلى */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    outline: none; /* لإزالة الحدود الافتراضية عند التركيز */
+}
+
+#content-area {
+    padding: 20px;
+    text-align: center;
+    min-height: 200px; /* ارتفاع أدنى لمنطقة المحتوى */
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.site-footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* استيراد خط Tajawal من Google Fonts (اختياري ولكن يحسن شكل الخط العربي) */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
