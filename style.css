@@ -95,3 +95,177 @@ body {
 
 /* استيراد خط Tajawal من Google Fonts (اختياري ولكن يحسن شكل الخط العربي) */
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+/* --- أنماط صفحة تسجيل الدخول --- */
+
+.login-page-body {
+    font-family: 'Tajawal', sans-serif; /* استخدام نفس الخط لتوحيد المظهر */
+    background-color: #f0f2f5; /* لون خلفية عام للصفحة */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* لجعل النموذج في منتصف الصفحة عمودياً */
+    margin: 0;
+    overflow-y: auto; /* السماح بالتمرير إذا كان المحتوى أطول */
+}
+
+.login-container {
+    display: flex;
+    width: 900px; /* عرض حاوية تسجيل الدخول */
+    max-width: 95%; /* لضمان الاستجابة على الشاشات الأصغر */
+    background-color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden; /* لإخفاء أي زوائد من الصور أو العناصر الداخلية */
+}
+
+.login-image-section {
+    flex-basis: 50%; /* قسم الصورة يأخذ نصف العرض */
+    display: flex; /* لتوسيط الصورة إذا كانت أصغر */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* لضمان أن الصورة لا تتجاوز حدود القسم */
+}
+
+.login-image-section img { /* لتنسيق الصورة المولدة */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* لجعل الصورة تغطي المساحة المتاحة دون تشويه */
+}
+
+.login-form-section {
+    flex-basis: 50%; /* قسم النموذج يأخذ النصف الآخر */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 380px; /* تحديد عرض أقصى للنموذج نفسه */
+    margin: 0 auto; /* لتوسيط النموذج داخل قسمه */
+}
+
+.login-form-section h2 {
+    color: #003366; /* لون أزرق داكن مشابه للثيم القانوني/الرسمي */
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.login-form-section p {
+    color: #555;
+    font-size: 0.95em;
+    margin-bottom: 25px;
+    text-align: right;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9em;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* لضمان أن الحشوة والحدود لا تزيد العرض */
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95em;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #00509e; /* نفس لون الزر الرئيسي */
+    box-shadow: 0 0 0 2px rgba(0, 80, 158, 0.15);
+}
+
+.login-options {
+    display: flex;
+    justify-content: flex-start; /* "نسيت كلمة المرور" على اليمين */
+    margin-bottom: 25px;
+}
+
+.forgot-password {
+    font-size: 0.85em;
+    color: #00509e;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #003366;
+    text-decoration: underline;
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00509e; /* لون أزرق جذاب */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: 'Tajawal', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 80, 158, 0.2);
+}
+
+.login-button:hover {
+    background-color: #003366; /* لون أغمق عند المرور */
+    box-shadow: 0 4px 10px rgba(0, 51, 102, 0.3);
+}
+
+.signup-link {
+    font-size: 0.9em;
+    color: #555;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.signup-link a {
+    color: #00509e;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* --- تعديلات طفيفة للاستجابة على الشاشات الصغيرة --- */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column; /* جعل الأعمدة فوق بعضها */
+        width: 95%;
+        max-width: 450px; /* عرض مناسب للشاشات الصغيرة */
+        margin: 20px auto; /* لإعطاء بعض الهامش */
+    }
+
+    .login-image-section {
+        min-height: 200px; /* ارتفاع أدنى للصورة على الموبايل */
+        max-height: 250px; /* ارتفاع أقصى */
+        flex-basis: auto; /* إلغاء تحديد الأساس المرن */
+        width: 100%;
+    }
+    .login-image-section img {
+      max-height: 250px; /* قد تحتاج لتعديل هذا حسب أبعاد الصورة */
+    }
+
+    .login-form-section {
+        padding: 30px 25px; /* تقليل الحشوة قليلاً */
+    }
+}
