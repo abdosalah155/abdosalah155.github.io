@@ -1,271 +1,443 @@
-/* الخطوط الأساسية والتنسيق العام */
-body {
-    font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* خط عربي عصري مع بدائل */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap');
+
+/* إعدادات عامة محسّنة */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5; /* لون خلفية عام احتياطي */
-    color: #333;
-    line-height: 1.6;
-    /* يمكنك إضافة صورة خلفية قانونية هنا */
-    /* مثال: background-image: url('path/to/your/legal-background.jpg'); */
-    /* background-size: cover; */
-    /* background-attachment: fixed; */
-    /* background-blend-mode: overlay; */ /* لمزج الخلفية مع لون */
-    /* background-color: rgba(0, 20, 40, 0.7); */ /* لون أزرق داكن شفاف فوق الخلفية */
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #1a365d;
+    --secondary-color: #2d5aa0;
+    --accent-color: #c4a747;
+    --text-dark: #2d3748;
+    --text-light: #718096;
+    --bg-light: #f7fafc;
+    --white: #ffffff;
+    --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --gradient-primary: linear-gradient(135deg, #1a365d 0%, #2d5aa0 100%);
+    --gradient-accent: linear-gradient(135deg, #c4a747 0%, #d4b55a 100%);
+}
+
+body {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    line-height: 1.7;
+    color: var(--text-dark);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* خلفية متحركة */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
+    z-index: -1;
+    animation: backgroundMove 20s ease-in-out infinite;
+}
+
+@keyframes backgroundMove {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(-20px) translateY(-10px); }
+    50% { transform: translateX(20px) translateY(10px); }
+    75% { transform: translateX(-10px) translateY(20px); }
 }
 
 .main-container {
-    max-width: 1200px;
-    margin: 0 auto; /* لتوسيط المحتوى */
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* خلفية بيضاء شبه شفافة للمحتوى إذا كان هناك صورة خلفية للجسم */
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    border-radius: 8px; /* زوايا دائرية بسيطة */
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-heavy);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
+/* تأثير الضوء المتحرك */
+.main-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(196, 167, 71, 0.1), transparent);
+    animation: rotate 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* هيدر محسّن */
 .site-header {
     text-align: center;
-    padding: 20px 0;
-    border-bottom: 2px solid #004080; /* خط فاصل بلون أزرق قانوني داكن */
-    margin-bottom: 30px;
+    padding: 60px 20px;
+    background: var(--gradient-primary);
+    margin: -20px -20px 40px -20px;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.site-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
 }
 
 .site-header h1 {
-    color: #003366; /* لون أزرق داكن للعناوين الرئيسية */
-    font-size: 2.5em;
-    margin-bottom: 0.2em;
+    color: var(--white);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    animation: slideInDown 1s ease-out;
 }
 
 .site-header p {
-    font-size: 1.1em;
-    color: #555;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+    animation: slideInUp 1s ease-out 0.3s both;
 }
 
-/* تنسيق أزرار الفرق الدراسية */
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* أزرار الفرق محسّنة */
 .year-navigation {
-    display: flex; /* لترتيب الأزرار أفقياً */
-    justify-content: center; /* لتوسيط الأزرار */
-    flex-wrap: wrap; /* للسماح للأزرار بالانتقال لسطر جديد على الشاشات الصغيرة */
-    gap: 20px; /* المسافة بين الأزرار */
-    margin-bottom: 40px;
-    padding: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+    padding: 0 20px;
 }
 
 .year-button {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #00509e; /* لون أزرق متوسط - يمكنك تغييره */
-    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 35px;
+    background: var(--white);
+    color: var(--primary-color);
     text-decoration: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    border-radius: 25px; /* زوايا دائرية لجعلها "حبوب" */
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 15px;
     border: 2px solid transparent;
-    transition: all 0.3s ease; /* تأثير انتقال سلس للتغييرات */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-medium);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    min-height: 80px;
 }
 
-/* تأثيرات بصرية عند مرور الماوس (hover) على الأزرار */
-.year-button:hover, .year-button:focus {
-    background-color: #003366; /* لون أغمق عند المرور */
-    color: #fff;
-    border-color: #c4a747; /* لون ذهبي أو برونزي لحدود الزر عند المرور - مستوحى من الأختام القانونية */
-    transform: translateY(-3px); /* حركة بسيطة للأعلى */
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    outline: none; /* لإزالة الحدود الافتراضية عند التركيز */
-}
-
-#content-area {
-    padding: 20px;
-    text-align: center;
-    min-height: 200px; /* ارتفاع أدنى لمنطقة المحتوى */
-    background-color: #ffffff;
-    border-radius: 5px;
-    border: 1px solid #e0e0e0;
-}
-
-.site-footer {
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 40px;
-    border-top: 1px solid #ddd;
-    font-size: 0.9em;
-    color: #777;
-}
-
-/* استيراد خط Tajawal من Google Fonts (اختياري ولكن يحسن شكل الخط العربي) */
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
-/* --- أنماط صفحة تسجيل الدخول --- */
-
-.login-page-body {
-    font-family: 'Tajawal', sans-serif; /* استخدام نفس الخط لتوحيد المظهر */
-    background-color: #f0f2f5; /* لون خلفية عام للصفحة */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* لجعل النموذج في منتصف الصفحة عمودياً */
-    margin: 0;
-    overflow-y: auto; /* السماح بالتمرير إذا كان المحتوى أطول */
-}
-
-.login-container {
-    display: flex;
-    width: 900px; /* عرض حاوية تسجيل الدخول */
-    max-width: 95%; /* لضمان الاستجابة على الشاشات الأصغر */
-    background-color: #fff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    overflow: hidden; /* لإخفاء أي زوائد من الصور أو العناصر الداخلية */
-}
-
-.login-image-section {
-    flex-basis: 50%; /* قسم الصورة يأخذ نصف العرض */
-    display: flex; /* لتوسيط الصورة إذا كانت أصغر */
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* لضمان أن الصورة لا تتجاوز حدود القسم */
-}
-
-.login-image-section img { /* لتنسيق الصورة المولدة */
+.year-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* لجعل الصورة تغطي المساحة المتاحة دون تشويه */
+    background: var(--gradient-primary);
+    transition: left 0.4s ease;
+    z-index: -1;
 }
 
-.login-form-section {
-    flex-basis: 50%; /* قسم النموذج يأخذ النصف الآخر */
+.year-button:hover::before {
+    left: 0;
+}
+
+.year-button:hover {
+    color: var(--white);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-heavy);
+    border-color: var(--accent-color);
+}
+
+.year-button::after {
+    content: '←';
+    position: absolute;
+    right: 20px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+}
+
+.year-button:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* منطقة المحتوى */
+#content-area {
     padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.form-wrapper {
-    width: 100%;
-    max-width: 380px; /* تحديد عرض أقصى للنموذج نفسه */
-    margin: 0 auto; /* لتوسيط النموذج داخل قسمه */
-}
-
-.login-form-section h2 {
-    color: #003366; /* لون أزرق داكن مشابه للثيم القانوني/الرسمي */
-    font-size: 2em;
-    font-weight: 700;
-    margin-bottom: 10px;
-    text-align: right;
-}
-
-.login-form-section p {
-    color: #555;
-    font-size: 0.95em;
-    margin-bottom: 25px;
-    text-align: right;
-}
-
-.input-group {
-    margin-bottom: 20px;
-    text-align: right;
-}
-
-.input-group label {
-    display: block;
-    font-size: 0.9em;
-    color: #333;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box; /* لضمان أن الحشوة والحدود لا تزيد العرض */
-    font-family: 'Tajawal', sans-serif;
-    font-size: 0.95em;
-    transition: border-color 0.3s ease;
-}
-
-.input-group input:focus {
-    outline: none;
-    border-color: #00509e; /* نفس لون الزر الرئيسي */
-    box-shadow: 0 0 0 2px rgba(0, 80, 158, 0.15);
-}
-
-.login-options {
-    display: flex;
-    justify-content: flex-start; /* "نسيت كلمة المرور" على اليمين */
-    margin-bottom: 25px;
-}
-
-.forgot-password {
-    font-size: 0.85em;
-    color: #00509e;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.forgot-password:hover {
-    color: #003366;
-    text-decoration: underline;
-}
-
-.login-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #00509e; /* لون أزرق جذاب */
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 1em;
-    font-weight: bold;
-    font-family: 'Tajawal', sans-serif;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 80, 158, 0.2);
-}
-
-.login-button:hover {
-    background-color: #003366; /* لون أغمق عند المرور */
-    box-shadow: 0 4px 10px rgba(0, 51, 102, 0.3);
-}
-
-.signup-link {
-    font-size: 0.9em;
-    color: #555;
     text-align: center;
-    margin-top: 25px;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
 }
 
-.signup-link a {
-    color: #00509e;
-    font-weight: bold;
+/* شبكة المواد محسّنة */
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+    padding: 0;
+}
+
+.subject-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.subject-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.subject-card:hover::before {
+    transform: scaleX(1);
+}
+
+.subject-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-heavy);
+    border-color: var(--accent-color);
+}
+
+.subject-card h3 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.subject-card p {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* أزرار التحميل محسّنة */
+.download-btn {
+    background: var(--gradient-primary);
+    color: var(--white);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.download-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* زر العودة محسّن */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gradient-accent);
+    color: var(--white);
+    padding: 12px 25px;
     text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-light);
+    margin-bottom: 30px;
 }
 
-.signup-link a:hover {
-    text-decoration: underline;
+.back-button::before {
+    content: '→';
+    transition: transform 0.3s ease;
 }
 
-/* --- تعديلات طفيفة للاستجابة على الشاشات الصغيرة --- */
+.back-button:hover::before {
+    transform: translateX(-5px);
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* فوتر محسّن */
+.site-footer {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-light);
+    font-size: 0.9rem;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 15px;
+}
+
+/* تأثيرات الحركة */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.year-button {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.year-button:nth-child(1) { animation-delay: 0.1s; }
+.year-button:nth-child(2) { animation-delay: 0.2s; }
+.year-button:nth-child(3) { animation-delay: 0.3s; }
+.year-button:nth-child(4) { animation-delay: 0.4s; }
+
+.subject-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.subject-card:nth-child(odd) { animation-delay: 0.1s; }
+.subject-card:nth-child(even) { animation-delay: 0.2s; }
+
+/* استجابة للشاشات الصغيرة */
 @media (max-width: 768px) {
-    .login-container {
-        flex-direction: column; /* جعل الأعمدة فوق بعضها */
-        width: 95%;
-        max-width: 450px; /* عرض مناسب للشاشات الصغيرة */
-        margin: 20px auto; /* لإعطاء بعض الهامش */
+    .main-container {
+        margin: 10px;
+        padding: 15px;
+        border-radius: 15px;
     }
+    
+    .site-header {
+        padding: 40px 15px;
+        margin: -15px -15px 30px -15px;
+    }
+    
+    .year-navigation {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .subject-card {
+        padding: 25px 20px;
+    }
+}
 
-    .login-image-section {
-        min-height: 200px; /* ارتفاع أدنى للصورة على الموبايل */
-        max-height: 250px; /* ارتفاع أقصى */
-        flex-basis: auto; /* إلغاء تحديد الأساس المرن */
-        width: 100%;
-    }
-    .login-image-section img {
-      max-height: 250px; /* قد تحتاج لتعديل هذا حسب أبعاد الصورة */
-    }
+/* تأثيرات إضافية للتفاعل */
+.year-button:active {
+    transform: translateY(-5px) scale(0.98);
+}
 
-    .login-form-section {
-        padding: 30px 25px; /* تقليل الحشوة قليلاً */
-    }
+.download-btn:active {
+    transform: translateY(0) scale(0.95);
+}
+
+/* تحسين الأداء */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* تأثير التحميل */
+.loading {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
 }
